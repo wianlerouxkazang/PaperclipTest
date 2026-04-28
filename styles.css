@@ -65,6 +65,12 @@ button:hover {
   filter: brightness(0.97);
 }
 
+button:focus-visible,
+input[type="text"]:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 1px;
+}
+
 .task-form button {
   background: var(--primary);
   color: #fff;
@@ -120,6 +126,7 @@ button:hover {
 .task-actions {
   display: flex;
   gap: 0.35rem;
+  flex-wrap: wrap;
 }
 
 .task-actions .delete {
@@ -152,5 +159,9 @@ button:hover {
 
   .task-actions {
     grid-column: 1 / -1;
+  }
+
+  .filters {
+    flex-wrap: wrap;
   }
 }

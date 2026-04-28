@@ -2,12 +2,11 @@
 
 ## To Do
 
-- Run final manual QA pass in browser on desktop and mobile width
 - Gather feedback for post-MVP improvements
 
 ## In Progress
 
-- None
+- Run final manual QA pass in browser on desktop and mobile width
 
 ## Done
 
@@ -25,3 +24,4 @@
 - Add task filters
 - Add localStorage save/load
 - Add empty state and basic clean styling
+- Apply basic QA polish: filter semantics, focus visibility, clearer empty-state messages

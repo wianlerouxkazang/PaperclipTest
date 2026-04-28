@@ -72,6 +72,18 @@
     return tasks;
   }
 
+  function getEmptyStateMessage() {
+    if (currentFilter === "active") {
+      return "No active tasks. You're all caught up.";
+    }
+
+    if (currentFilter === "completed") {
+      return "No completed tasks yet.";
+    }
+
+    return "No tasks yet. Add your first task.";
+  }
+
   function escapeHtml(value) {
     return value
       .replace(/&/g, "&amp;")
@@ -85,6 +97,7 @@
     var visibleTasks = getFilteredTasks();
 
     if (visibleTasks.length === 0) {
+      emptyEl.textContent = getEmptyStateMessage();
       emptyEl.style.display = "block";
       listEl.innerHTML = "";
       return;
@@ -153,15 +166,21 @@
 
   document.querySelector(".filters").addEventListener("click", function (event) {
     var target = event.target;
-    if (!(target instanceof HTMLButtonElement)) {
+    if (!(target instanceof Element)) {
       return;
     }
 
-    var filter = target.getAttribute("data-filter");
+    var button = target.closest("[data-filter]");
+    if (!button) {
+      return;
+    }
+
+    var filter = button.getAttribute("data-filter");
     if (!filter) {
       return;
     }
 
+    setError("");
     currentFilter = filter;
     updateFilterButtons();
     render();
@@ -169,6 +188,10 @@
 
   listEl.addEventListener("click", function (event) {
     var target = event.target;
+    if (!(target instanceof Element)) {
+      return;
+    }
+
     var item = target.closest(".task-item");
     if (!item) {
       return;
@@ -184,6 +207,7 @@
     }
 
     if (target.classList.contains("toggle-btn") || target.classList.contains("toggle")) {
+      setError("");
       task.completed = !task.completed;
       saveTasks();
       render();
@@ -218,6 +242,7 @@
       tasks = tasks.filter(function (entry) {
         return entry.id !== id;
       });
+      setError("");
       saveTasks();
       render();
     }
