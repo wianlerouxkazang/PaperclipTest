@@ -30,7 +30,7 @@ This app is intended for:
 
 ### Phase 1: MVP
 
-- Simple landing page
+- Username access gate
 - Task dashboard
 - Add task
 - Edit task
@@ -53,7 +53,7 @@ This app is intended for:
 
 ## Current Status
 
-This project is in MVP implementation with local persistence and basic settings complete.
+This project is in MVP implementation with username-gated access, per-user local persistence, and basic settings complete.
 
 Paperclip AI is being used to help plan, structure, and build the app step by step.
 
@@ -87,6 +87,14 @@ npm run qa:browser:report
 - Runs on pull requests and pushes to `main`
 - Installs dependencies, installs Chromium, runs Playwright tests, uploads artifacts (`playwright-report`, `test-results`)
 
+## Supabase Integration (TOD-13)
+
+- Production path uses Supabase for centralized user/task persistence.
+- Username uniqueness is enforced in the `users` table by a unique constraint.
+- Task CRUD is persisted in Supabase `tasks` records linked to `users.id`.
+- Local development and browser QA default to localStorage fallback when running on `localhost`/`127.0.0.1`.
+- To force Supabase while running locally for manual verification, set `window.__TODO_USE_SUPABASE = true` before app boot.
+
 ## Settings Behavior
 
 - Settings are stored in browser `localStorage` under a separate settings key.
@@ -97,6 +105,13 @@ npm run qa:browser:report
   - default filter: `all`
   - confirm delete: `true`
   - compact density: `false`
+
+## Username Access Behavior (TOD-13)
+
+- Users must enter a username to access the task dashboard.
+- The active username is stored at `todo_app_current_user_v1`.
+- Tasks and settings are isolated by username using user-scoped `localStorage` keys.
+- Logging out clears only the active session reference; user data remains available for that username on next sign-in.
 
 ## Folder Structure
 
