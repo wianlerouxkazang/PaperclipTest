@@ -37,6 +37,10 @@ This app is intended for:
 - Delete task
 - Mark task as complete
 - Filter tasks by status: All, Active, Completed
+- Local-only settings panel:
+  - Default filter on load (`All`, `Active`, `Completed`)
+  - Confirm before delete toggle
+  - Compact task spacing toggle
 
 ### Phase 2
 
@@ -49,9 +53,50 @@ This app is intended for:
 
 ## Current Status
 
-This project is in early setup phase.
+This project is in MVP implementation with local persistence and basic settings complete.
 
 Paperclip AI is being used to help plan, structure, and build the app step by step.
+
+## Automated Browser QA (TOD-11)
+
+Playwright is used for automated browser QA with a static local server.
+
+### Setup
+
+```bash
+npm install
+npx playwright install chromium
+```
+
+### Run QA Locally
+
+```bash
+npm run qa:browser
+```
+
+Optional:
+
+```bash
+npm run qa:browser:headed
+npm run qa:browser:report
+```
+
+### CI Pipeline
+
+- GitHub Actions workflow: `.github/workflows/browser-qa.yml`
+- Runs on pull requests and pushes to `main`
+- Installs dependencies, installs Chromium, runs Playwright tests, uploads artifacts (`playwright-report`, `test-results`)
+
+## Settings Behavior
+
+- Settings are stored in browser `localStorage` under a separate settings key.
+- `Default filter on load` is applied when the app initializes.
+- `Confirm before delete` controls whether delete actions require confirmation.
+- `Compact task spacing` changes task list density without changing CRUD behavior.
+- `Reset defaults` restores settings to:
+  - default filter: `all`
+  - confirm delete: `true`
+  - compact density: `false`
 
 ## Folder Structure
 

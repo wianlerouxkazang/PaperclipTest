@@ -22,3 +22,9 @@ This file records important decisions made during the project.
 - Added visible keyboard focus styles for inputs and buttons to improve baseline usability.
 - Empty-state message now changes by active filter (`All`, `Active`, `Completed`) for clearer UX.
 - Kept edits minimal and within current MVP scope; no new product features were introduced.
+
+## Automated Browser QA Decision (2026-04-28)
+
+- Adopted Playwright as the MVP browser QA framework because it supports stable end-to-end flows and CI artifact capture with minimal setup.
+- Scope for TOD-11 remains MVP: cover core task lifecycle and a critical settings behavior (delete confirmation persistence) without introducing product features.
+- Added GitHub Actions browser QA workflow to run on pull requests and `main` pushes so regressions are caught before merges.
