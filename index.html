@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My To-Do App</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <h1>My To-Do App</h1>
+
+      <form id="task-form" class="task-form" autocomplete="off">
+        <label for="task-input" class="sr-only">Task title</label>
+        <input id="task-input" name="task" type="text" maxlength="120" placeholder="Add a new task" required />
+        <button type="submit">Add</button>
+      </form>
+
+      <p id="form-error" class="error" role="alert" aria-live="polite"></p>
+
+      <div class="filters" role="tablist" aria-label="Task filters">
+        <button type="button" data-filter="all" class="filter-btn active" aria-pressed="true">All</button>
+        <button type="button" data-filter="active" class="filter-btn" aria-pressed="false">Active</button>
+        <button type="button" data-filter="completed" class="filter-btn" aria-pressed="false">Completed</button>
+      </div>
+
+      <section aria-live="polite">
+        <p id="empty-state" class="empty-state">No tasks yet. Add your first task.</p>
+        <ul id="task-list" class="task-list"></ul>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
