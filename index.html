@@ -8,7 +8,18 @@
   </head>
   <body>
     <main class="app">
-      <h1>My To-Do App</h1>
+      <div class="app-header">
+        <h1>My To-Do App</h1>
+        <button
+          id="settings-toggle"
+          type="button"
+          class="settings-toggle"
+          aria-expanded="false"
+          aria-controls="settings-panel"
+        >
+          Settings
+        </button>
+      </div>
 
       <form id="task-form" class="task-form" autocomplete="off">
         <label for="task-input" class="sr-only">Task title</label>
@@ -17,6 +28,36 @@
       </form>
 
       <p id="form-error" class="error" role="alert" aria-live="polite"></p>
+
+      <section id="settings-panel" class="settings-panel" hidden aria-live="polite">
+        <h2 class="settings-title">Settings</h2>
+
+        <div class="settings-row">
+          <label for="default-filter">Default filter on load</label>
+          <select id="default-filter" name="default-filter">
+            <option value="all">All</option>
+            <option value="active">Active</option>
+            <option value="completed">Completed</option>
+          </select>
+        </div>
+
+        <label class="settings-check">
+          <input id="confirm-delete" type="checkbox" />
+          Confirm before delete
+        </label>
+
+        <label class="settings-check">
+          <input id="compact-density" type="checkbox" />
+          Compact task spacing
+        </label>
+
+        <div class="settings-actions">
+          <button id="settings-save" type="button">Save settings</button>
+          <button id="settings-reset" type="button" class="secondary-btn">Reset defaults</button>
+        </div>
+
+        <p id="settings-message" class="settings-message" role="status" aria-live="polite"></p>
+      </section>
 
       <div class="filters" role="group" aria-label="Task filters">
         <button type="button" data-filter="all" class="filter-btn active" aria-pressed="true">All</button>

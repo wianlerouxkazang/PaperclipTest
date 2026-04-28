@@ -33,8 +33,21 @@ body {
 
 h1 {
   margin-top: 0;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   font-size: 1.6rem;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.settings-toggle {
+  background: var(--primary-soft);
+  color: #1149a6;
+  border-color: #c2d8fb;
 }
 
 .task-form {
@@ -66,7 +79,9 @@ button:hover {
 }
 
 button:focus-visible,
-input[type="text"]:focus-visible {
+input[type="text"]:focus-visible,
+select:focus-visible,
+input[type="checkbox"]:focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 1px;
 }
@@ -95,6 +110,64 @@ input[type="text"]:focus-visible {
   font-size: 0.9rem;
 }
 
+.settings-panel {
+  margin: 0.75rem 0 0.95rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fafcff;
+  padding: 0.75rem;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.settings-title {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.settings-row {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.settings-row select {
+  width: 100%;
+  padding: 0.55rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background: #fff;
+}
+
+.settings-check {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.95rem;
+}
+
+.settings-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.secondary-btn {
+  background: #fff;
+  border-color: var(--border);
+}
+
+.settings-message {
+  min-height: 1.1rem;
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.settings-message.success {
+  color: #1f7a3a;
+}
+
 .empty-state {
   margin: 0.5rem 0;
   color: var(--muted);
@@ -116,6 +189,14 @@ input[type="text"]:focus-visible {
   grid-template-columns: auto 1fr auto;
   gap: 0.55rem;
   align-items: center;
+}
+
+.app.compact .task-list {
+  gap: 0.4rem;
+}
+
+.app.compact .task-item {
+  padding: 0.5rem;
 }
 
 .task-item.completed .task-title {
@@ -151,6 +232,16 @@ input[type="text"]:focus-visible {
   .app {
     margin: 1rem auto;
     padding: 1rem;
+  }
+
+  .app-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .settings-toggle,
+  .settings-actions button {
+    width: 100%;
   }
 
   .task-item {
